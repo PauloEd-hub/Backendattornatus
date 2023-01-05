@@ -11,12 +11,12 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Enderecos")
+@Table(name = "enderecos")
 public class Endereco {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idLogradouro;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id_endereco;
     private String logradouro;
     private Long cep;
     private int numero;

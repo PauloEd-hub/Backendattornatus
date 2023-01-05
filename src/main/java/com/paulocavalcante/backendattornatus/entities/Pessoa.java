@@ -13,19 +13,19 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Pessoas")
+@Table(name = "pessoas")
 public class Pessoa {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nome;
 
     private LocalDate dataDeNascimento;
 
-    @OneToOne
-    @JoinColumn(name = "idLogradouro")
+    @OneToOne( cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_endereco")
     private Endereco endereco;
 
 
