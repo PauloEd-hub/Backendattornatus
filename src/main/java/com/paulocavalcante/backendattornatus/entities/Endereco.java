@@ -21,4 +21,8 @@ public class Endereco {
     private Long cep;
     private int numero;
     private String cidade;
+
+//    @ManyToOne
+//    @JoinColumn(name = "id")
+//    private Pessoa pessoa;
 }

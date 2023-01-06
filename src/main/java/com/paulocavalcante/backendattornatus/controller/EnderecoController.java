@@ -4,10 +4,7 @@ package com.paulocavalcante.backendattornatus.controller;
 import com.paulocavalcante.backendattornatus.entities.Endereco;
 import com.paulocavalcante.backendattornatus.service.EnderecoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/enderecos")
@@ -19,7 +16,8 @@ public class EnderecoController {
 
     //Criar endereço para pessoa
 
-    public Endereco createAddress(@RequestBody Endereco endereco) {
+    @PostMapping("/criaEndereco/pessoa/{id}")
+    public Endereco createAddress(@PathVariable(value ="pessoaId") Long id ,@RequestBody Endereco endereco) {
         return null;
 
     }

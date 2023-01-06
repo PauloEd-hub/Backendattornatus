@@ -31,7 +31,7 @@ public class PessoaService {
 
     public Pessoa updatePeople(Long id, Pessoa pessoa) {
         Pessoa pessoaAtual = pessoaRepository.findById(id).get();
-        BeanUtils.copyProperties(pessoa, pessoaAtual, "id");
+        BeanUtils.copyProperties(pessoa, pessoaAtual, "id", "endereco");
 
         return pessoaRepository.save(pessoaAtual);
     }
