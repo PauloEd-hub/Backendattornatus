@@ -1,8 +1,11 @@
 package com.paulocavalcante.backendattornatus.service;
 
+import com.paulocavalcante.backendattornatus.entities.Endereco;
 import com.paulocavalcante.backendattornatus.entities.Pessoa;
 import com.paulocavalcante.backendattornatus.repositories.PessoaRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,4 +28,19 @@ public class PessoaService {
     public Pessoa save(Pessoa pessoa) {
         return pessoaRepository.save(pessoa);
     }
+
+    public Pessoa updatePeople(Long id, Pessoa pessoa) {
+        Pessoa pessoaAtual = pessoaRepository.findById(id).get();
+        BeanUtils.copyProperties(pessoa, pessoaAtual, "id");
+
+        return pessoaRepository.save(pessoaAtual);
+    }
+
+
+//    public Pessoa updatePeople(Long id) {
+//        Pessoa pessoaAtual = pessoaRepository.findById(id).get();
+//
+//
+//        return pessoaRepository.save(pessoaAtual);
+//    }
 }

@@ -15,20 +15,11 @@ public class PessoaController {
     @Autowired
     private PessoaService pessoaService;
 
-    //Listar pessoas
-    @GetMapping
-    public List<Pessoa> showAllPeople() {
-        return pessoaService.showAllPeople();
-    }
-
-    //Editar uma pessoa
-
 
     //Criar uma pessoa
-    @PostMapping("/insere")
-    public Pessoa insertPeople(@RequestBody Pessoa pessoa) {
-        Pessoa result = pessoaService.save(pessoa);
-        return result;
+    @PostMapping("/cria")
+    public Pessoa createPeople(@RequestBody Pessoa pessoa) {
+        return pessoaService.save(pessoa);
     }
 
     //Consultar uma pessoa
@@ -38,9 +29,16 @@ public class PessoaController {
 
     }
 
+    //Listar pessoas
+    @GetMapping
+    public List<Pessoa> showAllPeople() {
+        return pessoaService.showAllPeople();
+    }
 
+    //Editar uma pessoa
+    @PutMapping("/atualiza/{id}")
+    public Pessoa updatePeople(@PathVariable Long id, @RequestBody Pessoa pessoa) {
+        return pessoaService.updatePeople(id, pessoa);
 
-
-
-
+    }
 }
