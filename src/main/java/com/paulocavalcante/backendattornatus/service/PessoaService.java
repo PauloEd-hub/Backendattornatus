@@ -1,11 +1,9 @@
 package com.paulocavalcante.backendattornatus.service;
 
-import com.paulocavalcante.backendattornatus.entities.Endereco;
 import com.paulocavalcante.backendattornatus.entities.Pessoa;
 import com.paulocavalcante.backendattornatus.repositories.PessoaRepository;
-import org.springframework.beans.BeanUtils;
+import jakarta.persistence.NoResultException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,8 +15,7 @@ public class PessoaService {
     private PessoaRepository pessoaRepository;
 
     public List<Pessoa> showAllPeople() {
-        List<Pessoa> resultado =  pessoaRepository.findAll();
-        return resultado;
+        return pessoaRepository.findAll();
     }
 
     public Pessoa findPeopleById(Long id) {
@@ -30,17 +27,15 @@ public class PessoaService {
     }
 
     public Pessoa updatePeople(Long id, Pessoa pessoa) {
-        Pessoa pessoaAtual = pessoaRepository.findById(id).get();
-        BeanUtils.copyProperties(pessoa, pessoaAtual, "id", "endereco");
+         pessoaRepository.findById(id).orElseThrow(
+                () -> new NoResultException("Pessoa não encontrada")
+        );
 
-        return pessoaRepository.save(pessoaAtual);
+        pessoa.setId(id);
+
+        pessoaRepository.save(pessoa);
+
+        return pessoa;
+
     }
-
-
-//    public Pessoa updatePeople(Long id) {
-//        Pessoa pessoaAtual = pessoaRepository.findById(id).get();
-//
-//
-//        return pessoaRepository.save(pessoaAtual);
-//    }
 }
