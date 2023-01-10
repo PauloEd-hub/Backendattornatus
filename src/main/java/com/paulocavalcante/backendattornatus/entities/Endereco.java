@@ -1,5 +1,6 @@
 package com.paulocavalcante.backendattornatus.entities;
 
+import com.paulocavalcante.backendattornatus.enums.PrioridadeEndereco;
 import jakarta.persistence.*;
 import jakarta.transaction.Transactional;
 import lombok.*;
@@ -21,7 +22,8 @@ public class Endereco {
     private int numero;
     private String cidade;
 
-//    private enum principalAdrress
+    @Enumerated(EnumType.STRING)
+    private PrioridadeEndereco prioridadeEndereco;
 
     @ManyToOne
     @JoinColumn(name = "id_endereco_pessoa")

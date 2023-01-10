@@ -28,9 +28,5 @@ public class Pessoa {
     private LocalDate dataDeNascimento;
 
 
-//    @JsonIgnore
-    //@OneToMany(cascade = CascadeType.ALL, mappedBy = "pessoa")
-//    private List<Endereco> endereco;
-
 
 }

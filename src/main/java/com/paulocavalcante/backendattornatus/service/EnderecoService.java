@@ -1,6 +1,7 @@
 package com.paulocavalcante.backendattornatus.service;
 
 import com.paulocavalcante.backendattornatus.entities.Endereco;
+import com.paulocavalcante.backendattornatus.enums.PrioridadeEndereco;
 import com.paulocavalcante.backendattornatus.repositories.EnderecoRepository;
 import com.paulocavalcante.backendattornatus.repositories.PessoaRepository;
 import jakarta.persistence.NoResultException;
@@ -19,11 +20,11 @@ public class EnderecoService {
     private PessoaRepository pessoaRepository;
 
 
-    public Endereco findPessoaById(Long id) {
-        return enderecoRepository.findById(id).get();
+    public Endereco findPessoaById(Long idPessoa) {
+        return enderecoRepository.findById(idPessoa).get();
     }
 
-    public List<Endereco> findAddresByPeopleId(Long idPessoa) {
+    public List<Endereco> findAddressByPeopleId(Long idPessoa) {
         return enderecoRepository.findByPessoa(pessoaRepository.findById(idPessoa).orElseThrow(
                 () -> new NoResultException("Pessoa não encontrada")
         ));
@@ -33,15 +34,21 @@ public class EnderecoService {
         return enderecoRepository.save(response);
     }
 
-    public Endereco UpdateAddress(Long id_endereco, Endereco endereco) {
-        enderecoRepository.findById(id_endereco).orElseThrow(
-                () -> new NoResultException("Endereço não encontrado")
-        );
+//    public Endereco UpdateAddress(Long id_endereco, Endereco endereco) {
+//        enderecoRepository.findById(id_endereco).orElseThrow(
+//                () -> new NoResultException("Endereço não encontrado")
+//        );
+//
+//        endereco.setId_endereco(id_endereco);
+//
+//        enderecoRepository.save(endereco);
+//
+//        return endereco;
+//    }
 
-        endereco.setId_endereco(id_endereco);
+    public Endereco searchPriorityAddress(Long idPessoa, String prioridadeEndereco) {
+        var prioridade = PrioridadeEndereco.valueOf(prioridadeEndereco).toString();
 
-        enderecoRepository.save(endereco);
-
-        return endereco;
+        return enderecoRepository.findMainAddressByPriority(idPessoa, prioridade);
     }
 }

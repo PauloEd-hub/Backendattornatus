@@ -28,9 +28,9 @@ public class PessoaController {
     }
 
     //Consultar uma pessoa
-    @GetMapping("/{id}")
-    public PessoaResponse findPeopleById(@PathVariable Long id) {
-        return PessoaMapper.modelToResponse(pessoaService.findPeopleById(id));
+    @GetMapping("/{idPessoa}")
+    public PessoaResponse findPeopleById(@PathVariable Long idPessoa) {
+        return PessoaMapper.modelToResponse(pessoaService.findPeopleById(idPessoa));
 
     }
 
@@ -41,8 +41,8 @@ public class PessoaController {
     }
 
     //Editar uma pessoa
-    @PutMapping("/atualiza/{id}")
-    public PessoaResponse updatePeople(@PathVariable Long id, @RequestBody PessoaRequest pessoa) {
-        return PessoaMapper.modelToResponse(pessoaService.updatePeople(id, PessoaMapper.requestToModel(pessoa)));
+    @PutMapping("/atualiza/{idPessoa}")
+    public PessoaResponse updatePeople(@PathVariable Long idPessoa, @RequestBody PessoaRequest pessoa) {
+        return PessoaMapper.modelToResponse(pessoaService.updatePeople(idPessoa, PessoaMapper.requestToModel(pessoa)));
     }
 }

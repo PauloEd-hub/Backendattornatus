@@ -18,20 +18,20 @@ public class PessoaService {
         return pessoaRepository.findAll();
     }
 
-    public Pessoa findPeopleById(Long id) {
-        return pessoaRepository.findById(id).get();
+    public Pessoa findPeopleById(Long idPessoa) {
+        return pessoaRepository.findById(idPessoa).get();
     }
 
     public Pessoa save(Pessoa pessoa) {
         return pessoaRepository.save(pessoa);
     }
 
-    public Pessoa updatePeople(Long id, Pessoa pessoa) {
-         pessoaRepository.findById(id).orElseThrow(
+    public Pessoa updatePeople(Long idPessoa, Pessoa pessoa) {
+         pessoaRepository.findById(idPessoa).orElseThrow(
                 () -> new NoResultException("Pessoa não encontrada")
         );
 
-        pessoa.setId(id);
+        pessoa.setId(idPessoa);
 
         pessoaRepository.save(pessoa);
 

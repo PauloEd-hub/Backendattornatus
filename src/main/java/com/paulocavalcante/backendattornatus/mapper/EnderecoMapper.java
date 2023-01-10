@@ -2,6 +2,7 @@ package com.paulocavalcante.backendattornatus.mapper;
 
 import com.paulocavalcante.backendattornatus.entities.Endereco;
 import com.paulocavalcante.backendattornatus.entities.Pessoa;
+import com.paulocavalcante.backendattornatus.enums.PrioridadeEndereco;
 import com.paulocavalcante.backendattornatus.request.EnderecoRequest;
 import com.paulocavalcante.backendattornatus.response.EnderecoResponse;
 import org.springframework.stereotype.Component;
@@ -24,18 +25,18 @@ public class EnderecoMapper {
                 .pessoa(Pessoa.builder()
                         .id(enderecoRequest.getPessoa_id())
                         .build())
-                //enum
+                .prioridadeEndereco(PrioridadeEndereco.valueOf(enderecoRequest.getPrioridadeEndereco().toString()))
                 .build();
     }
 
     public static EnderecoResponse modelToResponse(Endereco endereco) {
         return EnderecoResponse
                 .builder()
-                .nome_pessoa(endereco.getPessoa().getNome())
                 .logradouro(endereco.getLogradouro())
                 .cep(endereco.getCep())
                 .numero(endereco.getNumero())
                 .cidade(endereco.getCidade())
+                .prioridadeEndereco(PrioridadeEndereco.valueOf(endereco.getPrioridadeEndereco().toString()))
                 .build();
     }
 

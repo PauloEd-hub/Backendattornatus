@@ -1,5 +1,6 @@
 package com.paulocavalcante.backendattornatus.response;
 
+import com.paulocavalcante.backendattornatus.enums.PrioridadeEndereco;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,14 +11,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EnderecoResponse {
-
-    private String nome_pessoa;
     private String logradouro;
     private Long cep;
     private int numero;
     private String cidade;
-
-    //    private EnumEndereco principalAdrress = EnumEndereco.OUTROS
+    private PrioridadeEndereco prioridadeEndereco;
 
 
 

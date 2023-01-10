@@ -36,12 +36,15 @@ public class EnderecoController {
     public List<EnderecoResponse> searchAddress(@PathVariable(value = "idPessoa") Long idPessoa) {
 
 
-        return EnderecoMapper.modelToResponseList(enderecoService.findAddresByPeopleId(idPessoa));
+        return EnderecoMapper.modelToResponseList(enderecoService.findAddressByPeopleId(idPessoa));
 
     }
     //Poder informar qual endereço é o principal da pessoa
-    @PutMapping("/atualiza/{id}")
-    public EnderecoResponse updateAddres(@PathVariable Long id, @RequestBody EnderecoUpdateRequest enderecoUpdateRequest) {
-        return EnderecoMapper.modelToResponse(enderecoService.UpdateAddress(id, EnderecoMapper.requestUpdateToModel(enderecoUpdateRequest)));
+    @GetMapping("/buscaPrioridadeEndereco/{idPessoa}")
+    public EnderecoResponse searchPriorityAddress(@PathVariable Long idPessoa, @RequestParam String prioridadeEndereco) {
+
+        return EnderecoMapper.modelToResponse(enderecoService.searchPriorityAddress(idPessoa, prioridadeEndereco));
+
     }
+
 }
